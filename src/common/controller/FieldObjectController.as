@@ -72,10 +72,8 @@ public class FieldObjectController extends ControllerBase{
     public function remove_params_from_grid():void{
         var tiles:Array = this.tiles;
         for each(var t:IsoTile in tiles){
-            if(_object.is_border){
-                t.is_reachable = true;
-                t.remove_object(this);
-            }
+            t.is_reachable = true;
+            t.remove_object(this);
         }
     }
 

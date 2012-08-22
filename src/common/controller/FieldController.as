@@ -246,13 +246,16 @@ public class FieldController {
     // PROCESS GAMEPLAY ACTIONS
     // --
     public function process_target_complete(b_c:FieldObjectController):void {
-        if(b_c.object.is_major){
-            process_level_complete();
-            return;
+        switch(b_c.object.type){
+            case FieldObject.MAJOR_TYPE:
+                process_level_complete();
+                return;
+            case FieldObject.BORDER_TYPE:
+                remove_building_controller(b_c);
+                break;
+            default:
+                // do nothing
         }
-
-        if(b_c.object.is_border)  // TODO: RETHINK THIS SHIT
-            remove_building_controller(b_c);
 
         find_path_for_bots((b_c.object as FieldObject).target_point);
     }
@@ -341,6 +344,6 @@ public class FieldController {
     public function get active_target_points():Array{
         return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.completed; });
     }
-//    1. Приделать на конец уровня  - "Конец уровня"
+
 }
 }
