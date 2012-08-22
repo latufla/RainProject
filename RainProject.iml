@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="Rain Project">
+    <configurations>
+      <configuration name="Rain Project" pure-as="true" main-class="RainProject" output-file="RainProject.swf" output-folder="$MODULE_DIR$/out/production/Rain Project">
+        <dependencies target-player="11.1">
+          <entries>
+            <entry library-name="greensock" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="5e452a5f-8a26-4ea1-ba00-963ff3461a21">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="flex_sdk_4.6" />
+        </dependencies>
+        <compiler-options />
+        <packaging-air-desktop />
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="flex_sdk_4.6" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="greensock" level="project" />
+    <orderEntry type="module-library">
+      <library type="flex">
+        <properties id="5e452a5f-8a26-4ea1-ba00-963ff3461a21" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/assets/GUI_RP.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
+
