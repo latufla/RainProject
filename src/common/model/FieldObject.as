@@ -11,11 +11,20 @@ import common.event.GameEvent;
 import flash.geom.Point;
 
 public class FieldObject extends ObjectBase{
-    public static const BORDER_TYPE:String = "border"
-    public static const MAJOR_TYPE:String = "final_target"
 
-    private var _spawn_point:SpawnPoint;
-    private var _target_point:TargetPoint;
+    public static const CIVILEAN_TYPE:String = "civilean";
+    public static const BORDER_TYPE:String = "border";
+    public static const MAJOR_TYPE:String = "major";
+    public static const FACTORY_TYPE:String = "factory";
+    public static const OFFENCIVE_TYPE:String = "offencive";
+
+    private var _spawn_point:SpawnPoint; // bots spawn
+    private var _target_point:TargetPoint; // bots move to
+
+    private var _attack_radius:int; // offencive bot spawns and walks
+
+    private var _produce_class:Class; // производит что-либо
+    private var _produce_count:uint; // количеством
 
     public function FieldObject(w:uint, l:uint, h:uint) {
         super();
@@ -26,7 +35,7 @@ public class FieldObject extends ObjectBase{
     }
 
     public function create_spawn_point(bots_type:String = "def", bots_count:uint = 0):void {
-        if(_target_point || bots_count == 0)
+        if(bots_count == 0)
             return;
 
         var grid:IsoGrid = Config.field_c.grid;
@@ -45,7 +54,7 @@ public class FieldObject extends ObjectBase{
     }
 
     public function create_target_point(pnt:Point = null, priority:int = 1, bots_type:String = "def", bots_count:uint = 5):void {
-        if(_spawn_point || bots_count == 0)
+        if(bots_count == 0)
             return;
 
         var grid:IsoGrid = Config.field_c.grid;
@@ -71,14 +80,6 @@ public class FieldObject extends ObjectBase{
 
     public function get spawn_point():SpawnPoint{
         return _spawn_point;
-    }
-
-    override public function get is_border():Boolean{
-        return _type == BORDER_TYPE;
-    }
-
-    override public function get is_major():Boolean{
-        return _type == MAJOR_TYPE;
     }
 }
 }

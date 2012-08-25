@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package common.controller {
+import common.controller.constructions.BorderConstructionController;
+import common.controller.constructions.MajorConstructionController;
 import common.model.Bot;
 import common.model.FieldObject;
 import common.model.IsoGrid;
@@ -24,6 +26,10 @@ import flash.ui.MouseCursor;
 import flash.utils.setTimeout;
 
 import tr.Tr;
+
+import utils.ClassHelper;
+
+import utils.creator.ConstructionControllerCreator;
 
 import utils.DoubleBuffer;
 
@@ -93,7 +99,7 @@ public class FieldController {
         if(!can_add(b))
             return false;
 
-        var b_c:FieldObjectController = new FieldObjectController();
+        var b_c:FieldObjectController = ConstructionControllerCreator.create(b);
         b_c.object = b;
         b_c.apply_params_to_grid();
 
@@ -246,11 +252,11 @@ public class FieldController {
     // PROCESS GAMEPLAY ACTIONS
     // --
     public function process_target_complete(b_c:FieldObjectController):void {
-        switch(b_c.object.type){
-            case FieldObject.MAJOR_TYPE:
+        switch(ClassHelper.class_from_instance(b_c)){
+            case MajorConstructionController:
                 process_level_complete();
                 return;
-            case FieldObject.BORDER_TYPE:
+            case BorderConstructionController:
                 remove_building_controller(b_c);
                 break;
             default:

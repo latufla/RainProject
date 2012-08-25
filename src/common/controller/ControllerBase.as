@@ -32,6 +32,10 @@ public class ControllerBase {
         // override me
     }
 
+    public function remove_params_from_grid():void{
+        // override me
+    }
+
     public function get view():Sprite {
         return null;
     }

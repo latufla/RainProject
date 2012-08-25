@@ -23,15 +23,12 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.geom.Point;
 import flash.geom.Rectangle;
-
-import tr.Tr;
-
 import utils.iso.IsoMathUtil;
 
 public class FieldObjectController extends ControllerBase{
 
-    private var _object:FieldObject;
-    private var _view:FieldObjectView = new FieldObjectView();
+    protected var _object:FieldObject;
+    protected var _view:FieldObjectView = new FieldObjectView();
 
     public function FieldObjectController() {
         super();
@@ -50,9 +47,6 @@ public class FieldObjectController extends ControllerBase{
         bd.copyPixels(_view.bd,
                 new Rectangle(0, 0, _view.bd.width, _view.bd.height),
                 new Point(_view.x + x_offset, _view.y), null, null, true);
-
-        if(should_show_target_window)
-            show_target_window();
     }
 
     private function update_position():void {
@@ -69,7 +63,7 @@ public class FieldObjectController extends ControllerBase{
         }
     }
 
-    public function remove_params_from_grid():void{
+    override public function remove_params_from_grid():void{
         var tiles:Array = this.tiles;
         for each(var t:IsoTile in tiles){
             t.is_reachable = true;
@@ -77,7 +71,7 @@ public class FieldObjectController extends ControllerBase{
         }
     }
 
-    private function on_complete_target(e:GameEvent):void {
+    protected function on_complete_target(e:GameEvent):void {
         Config.field_c.process_target_complete(this);
     }
 
@@ -103,23 +97,12 @@ public class FieldObjectController extends ControllerBase{
     }
 
     public function process_click(){
-        if(!_can_click)
-            return;
-
-        if(_object.target_point)
-            show_target_window();
-
-        if(_object.spawn_point)
-            show_invade_window();
     }
 
-    private function show_target_window():void{
-        Config.scene_c.show_window(TargetWindow, _object.target_point, {x:_view.x + Config.scene_c.field_gui_offset.x + 50, y:_view.y, text:_object.target_point.description});
+    protected function show_target_window():void{
     }
 
-    private function show_invade_window():void{
-        Config.scene_c.show_window(DialogWindow, DialogWindow.KEY, {x:_view.x + Config.scene_c.field_gui_offset.x + 50, y:_view.y, text:Tr.invade_building_dialog_window,
-            confirm_button:{cb: start_spawn_bots}, cancel_button:{}});
+    protected function show_invade_window():void{
     }
 
     public function get tiles():Array{
@@ -143,11 +126,6 @@ public class FieldObjectController extends ControllerBase{
 
         if(_object.target_point)
             _object.addEventListener(GameEvent.COMPLETE_TARGET, on_complete_target);
-    }
-
-    private function get should_show_target_window():Boolean{
-        var t_p:TargetPoint = _object.target_point;
-        return t_p && !t_p.completed && !Config.scene_c.window_already_shown(t_p);
     }
 }
 }
