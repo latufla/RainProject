@@ -35,10 +35,11 @@ import utils.DoubleBuffer;
 
 import utils.ZorderUtils;
 import utils.iso.IsoMathUtil;
+import utils.ui.CustomMouse;
 
 public class FieldController {
-    public static const TILE_WIDTH:uint = 40;
-    public static const TILE_LENGTH:uint = 40;
+    public static const TILE_WIDTH:uint = Config.TILE_WIDTH;
+    public static const TILE_LENGTH:uint = Config.TILE_LENGTH;
 
     private var _grid:IsoGrid;
     private var _grid_view:IsoGridView = new IsoGridView();
@@ -54,7 +55,6 @@ public class FieldController {
     private var _view:Sprite = new Sprite();
     private var _d_buffer:DoubleBuffer = new DoubleBuffer(1280, 768);
 
-    private var _cursor_point:Point = new Point();
     private var _redraw_grid:Boolean = false;
 
     public function FieldController() {
@@ -202,29 +202,48 @@ public class FieldController {
     }
 
     private function on_mouse_move(e:MouseEvent):void {
-        _cursor_point.x = e.localX - _grid_view.offset.x;
-        _cursor_point.y = e.localY;
+        var mouse:CustomMouse = CustomMouse.instance;
+        mouse.x = e.localX - _grid_view.offset.x;
+        mouse.y = e.localY;
 
-        var c:FieldObjectController = get_building_by_coords_px(_cursor_point);
-        if(c)
-            process_mouse_over_object();
-        else
-            process_mouse_out_object();
+        var c:FieldObjectController = get_building_by_coords_px(mouse.position);
+        var last_obj:FieldObjectController = mouse.last_object_over;
+
+        // если над пустым полем и был над пустым
+        if (!c && !last_obj){
+            mouse.last_object_over = c;
+            return;
+        }
+
+        // если был над пустым полем, а стал над объектом
+        if(!last_obj && c){
+            process_mouse_over_object(c);
+        }else if(last_obj && !c){ // был над объектом, стал над пустым полем
+            process_mouse_out_object(last_obj);
+        }else if(last_obj != c) { //,был над одним объектом, стал над другим
+            process_mouse_out_object(last_obj);
+            process_mouse_over_object(c);
+        }
+
+        mouse.last_object_over = c;
     }
 
-    private function process_mouse_over_object():void{
-        Mouse.cursor = MouseCursor.BUTTON;
+    private function process_mouse_over_object(c:FieldObjectController):void{
+        c.process_mouse_over();
+        CustomMouse.instance.cursor = MouseCursor.BUTTON;
     }
 
-    private function process_mouse_out_object():void{
-        Mouse.cursor = MouseCursor.ARROW;
+    private function process_mouse_out_object(c:FieldObjectController):void{
+        c.process_mouse_out();
+        CustomMouse.instance.cursor = MouseCursor.BUTTON;
     }
 
     private function process_building_click(e:MouseEvent):void {
-        _cursor_point.x = e.localX - _grid_view.offset.x;
-        _cursor_point.y = e.localY;
+        var mouse:CustomMouse = CustomMouse.instance;
+        mouse.x = e.localX - _grid_view.offset.x;
+        mouse.y = e.localY;
 
-        var c:FieldObjectController = get_building_by_coords_px(_cursor_point);
+        var c:FieldObjectController = get_building_by_coords_px(mouse.position);
         if(c)
             c.process_click();
     }

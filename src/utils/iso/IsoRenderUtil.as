@@ -10,26 +10,21 @@ import flash.geom.Rectangle;
 public class IsoRenderUtil {
     // renders simple rect in iso
     // takes iso coordinates
-    public static function draw_iso_rect(layer:Sprite, size:Rectangle, borderWidth:int, color:uint, borderColor:uint, alpha:Number = 1):void {
-        layer.graphics.beginFill(color, alpha);
-        layer.graphics.lineStyle(borderWidth, borderColor);
-
+    public static function draw_iso_rect(g:Graphics, size:Rectangle):void {
         var addPoint:Point = IsoMathUtil.isoToScreen(size.x, size.y);
-        layer.graphics.moveTo(addPoint.x, addPoint.y);
+        g.moveTo(addPoint.x, addPoint.y);
 
         addPoint = IsoMathUtil.isoToScreen(size.x + size.width, size.y);
-        layer.graphics.lineTo(addPoint.x, addPoint.y);
+        g.lineTo(addPoint.x, addPoint.y);
 
         addPoint = IsoMathUtil.isoToScreen(size.x + size.width, size.y + size.height);
-        layer.graphics.lineTo(addPoint.x, addPoint.y);
+        g.lineTo(addPoint.x, addPoint.y);
 
         addPoint = IsoMathUtil.isoToScreen(size.x, size.y + size.height);
-        layer.graphics.lineTo(addPoint.x, addPoint.y);
+        g.lineTo(addPoint.x, addPoint.y);
 
         addPoint = IsoMathUtil.isoToScreen(size.x, size.y);
-        layer.graphics.lineTo(addPoint.x, addPoint.y);
-
-        layer.graphics.endFill();
+        g.lineTo(addPoint.x, addPoint.y);
     }
 
     public static function draw_iso_box(layer:Sprite, w:int, l:int, h:int, color:uint):void{

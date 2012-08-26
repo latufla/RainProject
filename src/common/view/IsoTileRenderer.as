@@ -9,6 +9,8 @@ package common.view {
 import common.controller.FieldController;
 import common.model.IsoTile;
 
+import flash.display.Graphics;
+
 import flash.display.Sprite;
 import flash.geom.Point;
 import flash.geom.Rectangle;
@@ -19,11 +21,11 @@ import utils.iso.IsoMathUtil;
 import utils.iso.IsoRenderUtil;
 
 public class IsoTileRenderer {
-    private static const NON_REACHABLE_COLOR:uint = 0xFF1111;
-    private static const REACHABLE_COLOR:uint = 0x11FF11;
+    private static const NON_REACHABLE_COLOR:uint = 0x939393;
+    private static const REACHABLE_COLOR:uint = 0xAEAEAE;
 
-    private static const SPAWN_POINT_COLOR:uint = 0x1111FF;
-    private static const TARGET_POINT_COLOR:uint = 0x111111;
+    private static const SPAWN_POINT_COLOR:uint = 0x2222FF;
+    private static const TARGET_POINT_COLOR:uint = 0xFF2222;
 
     public function IsoTileRenderer() {
     }
@@ -43,8 +45,11 @@ public class IsoTileRenderer {
         if(tile.is_spawn)
             color = SPAWN_POINT_COLOR;
 
-        var size:Rectangle = new Rectangle(tile.x_px, tile.y_px, FieldController.TILE_WIDTH - 2, FieldController.TILE_LENGTH - 2);
-        IsoRenderUtil.draw_iso_rect(layer, size, 1, color, color, 1);
+        var size:Rectangle = new Rectangle(tile.x_px, tile.y_px, FieldController.TILE_WIDTH - 1, FieldController.TILE_LENGTH - 1);
+        var g:Graphics = layer.graphics;
+        g.beginFill(color, 1);
+        IsoRenderUtil.draw_iso_rect(g, size);
+        g.endFill();
     }
 
     public function draw_debug_info(tile:IsoTile, layer:Sprite, debug_field:TextField):void {

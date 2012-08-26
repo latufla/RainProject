@@ -45,8 +45,8 @@ public class FieldObjectController extends ControllerBase{
         }
 
         bd.copyPixels(_view.bd,
-                new Rectangle(0, 0, _view.bd.width, _view.bd.height),
-                new Point(_view.x + x_offset, _view.y), null, null, true);
+                new Rectangle(0, 0, int(_view.bd.width), int(_view.bd.height)),
+                new Point(int(_view.x + x_offset), int(_view.y)), null, null, true);
     }
 
     private function update_position():void {
@@ -94,9 +94,6 @@ public class FieldObjectController extends ControllerBase{
 
     public function contains_px(pnt:Point):Boolean{
         return _view.contains_px(pnt);
-    }
-
-    public function process_click():void{
     }
 
     protected function show_target_window():void{

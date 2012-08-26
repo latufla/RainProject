@@ -63,5 +63,15 @@ public class ControllerBase {
     public function get can_click():Boolean {
         return _can_click;
     }
+
+    public function process_click():void{
+    }
+
+    public function process_mouse_over():void{
+    }
+
+    public function process_mouse_out():void{
+    }
+
 }
 }
