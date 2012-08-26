@@ -16,14 +16,14 @@ public class MajorConstructionController extends FieldObjectController{
     public function MajorConstructionController() {
     }
 
-    override public function draw(bd:BitmapData, update_only:Boolean = false, x_offset:Number = 0):void{
-        super.draw(bd, update_only, x_offset);
+    override public function draw(bd:BitmapData, service_bd:BitmapData = null, update_only:Boolean = false, x_offset:Number = 0):void{
+        super.draw(bd, service_bd, update_only, x_offset);
 
         if(should_show_target_window)
             show_target_window();
     }
 
-    override public function process_click(){
+    override public function process_click():void{
         if(!_can_click)
             return;
 

@@ -15,7 +15,7 @@ public class CivileanConstructionController extends FieldObjectController{
     public function CivileanConstructionController() {
     }
 
-    override public function process_click(){
+    override public function process_click():void{
         if(!_can_click)
             return;
 

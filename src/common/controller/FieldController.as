@@ -44,10 +44,12 @@ public class FieldController {
     private var _grid_view:IsoGridView = new IsoGridView();
 
     private var _all_objects:Vector.<ControllerBase> = new Vector.<ControllerBase>();
-    private var _objects_view:Sprite = new Sprite();
+    private var _objects_view:Sprite = new Sprite(); // constructions and bots
 
     private var _buildings:Vector.<FieldObjectController> = new Vector.<FieldObjectController>();
     private var _bots:Vector.<BotController> = new Vector.<BotController>();
+
+    private var _service_view:Sprite = new Sprite(); // attack radius etc.
 
     private var _view:Sprite = new Sprite();
     private var _d_buffer:DoubleBuffer = new DoubleBuffer(1280, 768);
@@ -70,6 +72,7 @@ public class FieldController {
 
         add_listeners();
         _view.addChild(_grid_view);
+        _view.addChild(_service_view);
         _view.addChild(_objects_view);
     }
 
@@ -186,7 +189,7 @@ public class FieldController {
 
     public function draw_all_objects(d_buffer:DoubleBuffer, update_only:Boolean = false):void{
         for each(var p:ControllerBase in _all_objects){
-            p.draw(d_buffer.bd, update_only, _grid_view.offset.x);
+            p.draw(d_buffer.bd, null, update_only, _grid_view.offset.x);
         }
     }
     //RENDER END
@@ -351,5 +354,8 @@ public class FieldController {
         return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.completed; });
     }
 
+    public function get service_view():Sprite {
+        return _service_view;
+    }
 }
 }

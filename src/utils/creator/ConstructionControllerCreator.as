@@ -10,6 +10,7 @@ import common.controller.FieldObjectController;
 import common.controller.constructions.BorderConstructionController;
 import common.controller.constructions.CivileanConstructionController;
 import common.controller.constructions.MajorConstructionController;
+import common.controller.constructions.OffenciveConstructionController;
 import common.model.FieldObject;
 
 import flash.utils.Dictionary;
@@ -22,7 +23,7 @@ public class ConstructionControllerCreator {
     CONSTRUCTIONS[FieldObject.MAJOR_TYPE] =  MajorConstructionController;
 
     CONSTRUCTIONS[FieldObject.FACTORY_TYPE] =  FieldObjectController;
-    CONSTRUCTIONS[FieldObject.OFFENCIVE_TYPE] =  FieldObjectController;
+    CONSTRUCTIONS[FieldObject.OFFENCIVE_TYPE] =  OffenciveConstructionController;
 
     public function ConstructionControllerCreator() {
     }

@@ -26,8 +26,16 @@ public class IsoMathUtil {
         point2 = isoToScreen(isoSize.x, isoSize.y + isoSize.height);
         size.height = point1.y - point2.y;
 
-        //trace("pixelWidth", size);
         return size;
+    }
+
+    // TODO: USE Pt in ALL project maybe
+    public static function polar (origin:Point, radius:Number, theta:Number = 0):Point{
+        var tx:Number = origin.x + Math.cos(theta) * radius;
+        var ty:Number = origin.y + Math.sin(theta) * radius;
+//        var tz:Number = origin.z
+
+       return new Point(tx, ty);
     }
 }
 }

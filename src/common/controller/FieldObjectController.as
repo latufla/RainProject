@@ -34,7 +34,7 @@ public class FieldObjectController extends ControllerBase{
         super();
     }
 
-    override public function draw(bd:BitmapData, update_only:Boolean = false, x_offset:Number = 0):void{
+    override public function draw(bd:BitmapData, service_bd:BitmapData = null, update_only:Boolean = false, x_offset:Number = 0):void{
         if(!_object)
             throw new Error("FieldObjectController -> draw(): object is null");
 
@@ -96,7 +96,7 @@ public class FieldObjectController extends ControllerBase{
         return _view.contains_px(pnt);
     }
 
-    public function process_click(){
+    public function process_click():void{
     }
 
     protected function show_target_window():void{

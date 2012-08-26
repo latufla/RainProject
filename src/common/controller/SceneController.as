@@ -13,6 +13,7 @@ import flash.utils.Dictionary;
 import utils.MovieClipHelper;
 
 import utils.creator.GameplayDemoFieldCreator;
+import utils.creator.NMDemoFieldCreator;
 
 public class SceneController {
 
@@ -27,7 +28,7 @@ public class SceneController {
     }
 
     private function init():void {
-        _field_c = GameplayDemoFieldCreator.create();
+        _field_c = NMDemoFieldCreator.create();
         _field_c.draw();
 
         _view.addChild(_field_c.view);

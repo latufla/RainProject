@@ -53,6 +53,13 @@ public class FieldObject extends ObjectBase{
         }
     }
 
+    public function change_spawn_point_coords(x:uint, y:uint):void{
+        _spawn_point.remove_params_from_grid();
+        _spawn_point.x = x;
+        _spawn_point.y = y;
+        _spawn_point.apply_params_to_grid();
+    }
+
     public function create_target_point(pnt:Point = null, priority:int = 1, bots_type:String = "def", bots_count:uint = 5):void {
         if(bots_count == 0)
             return;
@@ -70,6 +77,13 @@ public class FieldObject extends ObjectBase{
         _target_point.addEventListener(GameEvent.COMPLETE_TARGET, on_complete_target);
     }
 
+    public function change_target_point_coords(x:uint, y:uint):void{
+        _target_point.remove_params_from_grid();
+        _target_point.x = x;
+        _target_point.y = y;
+        _target_point.apply_params_to_grid();
+    }
+
     private function on_complete_target(e:GameEvent):void {
         dispatchEvent(new GameEvent(GameEvent.COMPLETE_TARGET, {object:e.data.object}));
     }
@@ -80,6 +94,14 @@ public class FieldObject extends ObjectBase{
 
     public function get spawn_point():SpawnPoint{
         return _spawn_point;
+    }
+
+    public function get attack_radius():int {
+        return _attack_radius;
+    }
+
+    public function set attack_radius(value:int):void {
+        _attack_radius = value;
     }
 }
 }

@@ -24,7 +24,7 @@ public class ControllerBase {
         _id = count++;
     }
 
-    public function draw(bd:BitmapData, update_only:Boolean = false, x_offset:Number = 0):void{
+    public function draw(bd:BitmapData, service_bd:BitmapData = null, update_only:Boolean = false, x_offset:Number = 0):void{
         // override me
     }
 
