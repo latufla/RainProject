@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package common.model {
+import common.Goal;
 import common.controller.ControllerBase;
 import common.event.GameEvent;
 
@@ -19,14 +20,14 @@ public class TargetPoint extends EventDispatcher{
     private var _priority:int = -1; // -1 is inactive
 
     private var _bots_type:String;
-    private var _bots_count:uint;
-    private var _completed:Boolean;
+    private var _goal:Goal = new Goal();
 
     public function TargetPoint(x:uint, y:uint, bots_type:String = "def", bots_count:uint = 5) {
         _x = x;
         _y = y;
         _bots_type  = bots_type;
-        _bots_count = bots_count;
+        _goal.type = bots_type;
+        _goal.count = bots_count;
     }
 
     public function apply_params_to_grid():void{
@@ -51,15 +52,16 @@ public class TargetPoint extends EventDispatcher{
             return;
 
         var bots:Vector.<ControllerBase> = t.bots;
-        if (bots.length >= _bots_count){
-            _completed = true;
+        bots = bots.filter(function(item:ControllerBase, index:int, v:Vector.<ControllerBase>):Boolean{ return item.object.type == _goal.type});
+        if (bots.length >= _goal.count){
+            _goal.completed = true;
             remove_params_from_grid();
             dispatchEvent(new GameEvent(GameEvent.COMPLETE_TARGET, {object:this}));
         }
     }
 
-    public function get completed():Boolean{
-        return _completed;
+    public function get goal_completed():Boolean{
+        return _goal.completed;
     }
 
     public function get tile():IsoTile{
@@ -91,7 +93,7 @@ public class TargetPoint extends EventDispatcher{
     }
 
     public function get description():String{
-        return "" + tile.bots.length + "/" + _bots_count;
+        return "" + tile.bots.length + "/" + _goal.count;
     }
 }
 }

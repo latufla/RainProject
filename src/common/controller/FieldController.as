@@ -308,7 +308,7 @@ public class FieldController {
     public function process_refresh_target_points():void{
         for each(var p:TargetPoint in active_target_points){
             p.refresh();
-            if(p.completed)
+            if(p.goal_completed)
                 Config.scene_c.remove_window(p, true);
             else
                 Config.scene_c.refresh_window(p, {text: p.description});
@@ -370,7 +370,7 @@ public class FieldController {
     }
 
     public function get active_target_points():Array{
-        return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.completed; });
+        return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.goal_completed; });
     }
 
     public function get service_view():Sprite {

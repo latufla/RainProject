@@ -37,7 +37,7 @@ public class BorderConstructionController extends FieldObjectController{
 
     protected function get should_show_target_window():Boolean{
         var t_p:TargetPoint = _object.target_point;
-        return t_p && !t_p.completed && !Config.scene_c.window_already_shown(t_p);
+        return t_p && !t_p.goal_completed && !Config.scene_c.window_already_shown(t_p);
     }
 }
 }

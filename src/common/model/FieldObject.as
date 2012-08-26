@@ -23,8 +23,7 @@ public class FieldObject extends ObjectBase{
 
     private var _attack_radius:int; // offencive bot spawns and walks
 
-    private var _produce_class:Class; // производит что-либо
-    private var _produce_count:uint; // количеством
+    private var _produce_count:uint; // number of produce_class instances
 
     public function FieldObject(w:uint, l:uint, h:uint) {
         super();

@@ -29,6 +29,8 @@ public class ObjectBase extends EventDispatcher{
     protected var _is_reachable:Boolean; // true - u can walk here
     protected var _is_occupied:Boolean;  // false - u can build here
 
+    protected var _produce_class:Class; // produce smth.
+
     protected var _type:String; // use for bots etc.
 
     protected var _id:int = -1;
@@ -230,6 +232,14 @@ public class ObjectBase extends EventDispatcher{
     public function get front ():int
     {
         return y + length;
+    }
+
+    public function get produce_class():Class {
+        return _produce_class;
+    }
+
+    public function set produce_class(value:Class):void {
+        _produce_class = value;
     }
 }
 }
