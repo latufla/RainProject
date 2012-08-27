@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package common.model {
-import common.controller.BotController;
+import common.controller.bots.BotController;
 import common.controller.ControllerBase;
 
 import utils.PNode;

@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package common.controller {
+import common.controller.bots.BotController;
 import common.controller.constructions.BorderConstructionController;
 import common.controller.constructions.MajorConstructionController;
 import common.model.Bot;
@@ -28,6 +29,7 @@ import flash.utils.setTimeout;
 import tr.Tr;
 
 import utils.ClassHelper;
+import utils.creator.BotControllerCreator;
 
 import utils.creator.ConstructionControllerCreator;
 
@@ -145,7 +147,7 @@ public class FieldController {
         if(!can_add(b))
             return false;
 
-        var b_c:BotController = new BotController();
+        var b_c:BotController = BotControllerCreator.create(b);
         b_c.object = b;
         b_c.move_to_target();
 
@@ -306,7 +308,7 @@ public class FieldController {
 
     //--
     public function process_refresh_target_points():void{
-        for each(var p:TargetPoint in active_target_points){
+        for each(var p:TargetPoint in all_active_target_points){
             p.refresh();
             if(p.goal_completed)
                 Config.scene_c.remove_window(p, true);
@@ -369,8 +371,13 @@ public class FieldController {
         return res;
     }
 
-    public function get active_target_points():Array{
-        return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.goal_completed; });
+    public function get_active_target_points_for(bot_type:String = Bot.SIMPLE_ZOMBIE):Array{
+        return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.goal_completed
+                && item.bots_type == bot_type; });
+    }
+
+    public function get all_active_target_points():Array{
+        return target_points.filter(function(item:TargetPoint, index:int, array:Array):Boolean{ return !item.goal_completed});
     }
 
     public function get service_view():Sprite {

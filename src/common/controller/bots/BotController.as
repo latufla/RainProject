@@ -5,7 +5,8 @@
  * Time: 4:14 PM
  * To change this template use File | Settings | File Templates.
  */
-package common.controller {
+package common.controller.bots {
+import common.controller.*;
 import com.greensock.TimelineLite;
 import com.greensock.TweenLite;
 import com.greensock.easing.Linear;
@@ -27,8 +28,8 @@ import utils.iso.IsoMathUtil;
 
 public class BotController extends ControllerBase{
 
-    private var _object:Bot;
-    private var _view:BotView = new BotView();
+    protected var _object:Bot;
+    protected var _view:BotView = new BotView();
 
     // moving
     private var _moving_queue:TimelineLite = new TimelineLite();

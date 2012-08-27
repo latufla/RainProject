@@ -5,10 +5,10 @@
  * Time: 10:57 PM
  * To change this template use File | Settings | File Templates.
  */
-package common {
+package common.model {
 public class Goal {
 
-    private var _type:String = "def";
+    private var _type:String = Bot.SIMPLE_ZOMBIE;
     private var _count:uint;
     private var _completed:Boolean;
 

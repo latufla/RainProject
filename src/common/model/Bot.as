@@ -13,11 +13,13 @@ import utils.PathfindUtils;
 public class Bot extends ObjectBase{
 
     public static const SIMPLE_TYPE:int = 1;
+    public static const SIMPLE_ZOMBIE = "simple_zombie";
+    public static const OFFENCIVE_ZOMBIE = "offencive_zombie";
 
     protected var _path:Array = [];
     protected var _target:IsoTile;
 
-    public function Bot(type:String = "def") {
+    public function Bot(type:String = Bot.SIMPLE_ZOMBIE) {
         super();
 
         _type = type;
@@ -43,7 +45,7 @@ public class Bot extends ObjectBase{
 
     public function get next_target():IsoTile{
         var field_c:FieldController = Config.field_c;
-        var target_points:Array = field_c.active_target_points;
+        var target_points:Array = field_c.get_active_target_points_for(_type);
         if(target_points.length == 0)
             return null;
 

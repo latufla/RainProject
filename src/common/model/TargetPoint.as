@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 package common.model {
-import common.Goal;
 import common.controller.ControllerBase;
 import common.event.GameEvent;
 
@@ -22,7 +21,7 @@ public class TargetPoint extends EventDispatcher{
     private var _bots_type:String;
     private var _goal:Goal = new Goal();
 
-    public function TargetPoint(x:uint, y:uint, bots_type:String = "def", bots_count:uint = 5) {
+    public function TargetPoint(x:uint, y:uint, bots_type:String = "simple_zombie", bots_count:uint = 5) {
         _x = x;
         _y = y;
         _bots_type  = bots_type;
@@ -94,6 +93,14 @@ public class TargetPoint extends EventDispatcher{
 
     public function get description():String{
         return "" + tile.bots.length + "/" + _goal.count;
+    }
+
+    public function get bots_type():String {
+        return _bots_type;
+    }
+
+    public function set bots_type(value:String):void {
+        _bots_type = value;
     }
 }
 }

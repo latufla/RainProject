@@ -33,7 +33,7 @@ public class FieldObject extends ObjectBase{
         _debug_height = h;
     }
 
-    public function create_spawn_point(bots_type:String = "def", bots_count:uint = 0):void {
+    public function create_spawn_point(bots_type:String = Bot.SIMPLE_ZOMBIE, bots_count:uint = 0):void {
         if(bots_count == 0)
             return;
 
@@ -59,7 +59,7 @@ public class FieldObject extends ObjectBase{
         _spawn_point.apply_params_to_grid();
     }
 
-    public function create_target_point(pnt:Point = null, priority:int = 1, bots_type:String = "def", bots_count:uint = 5):void {
+    public function create_target_point(pnt:Point = null, priority:int = 1, bots_type:String = Bot.SIMPLE_ZOMBIE, bots_count:uint = 5):void {
         if(bots_count == 0)
             return;
 

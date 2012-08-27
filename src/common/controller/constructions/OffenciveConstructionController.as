@@ -72,8 +72,8 @@ public class OffenciveConstructionController extends FieldObjectController{
         if(!_can_click)
             return;
 
-//        if(_object.spawn_point)
-//            start_spawn_bots();
+        if(_object.spawn_point)
+            start_spawn_bots();
     }
 
     override public function process_mouse_over():void{

@@ -7,6 +7,7 @@
  */
 package utils.creator {
 import common.controller.FieldController;
+import common.model.Bot;
 import common.model.FieldObject;
 
 import flash.geom.Point;
@@ -34,9 +35,14 @@ public class NMDemoFieldCreator {
     private static const OBJECTS:Array = [
 //        {type: FieldObject.BORDER_TYPE, x:8, y:4, w:1, l:1, h:1, target:{priority:2, bots_type:"def", bots_count:15}},
 //        {type: FieldObject.BORDER_TYPE, x:7, y:9, w:1, l:1, h:1, target:{x:7, y:10, priority:3, bots_type:"def", bots_count:10}},
-        {type: FieldObject.OFFENCIVE_TYPE, x:9, y:3, w:2, l:1, h:2, attack_radius: 3, target:{x:8, y:4, priority:9999, bots_type:"def", bots_count:3}, spawn:{bots_type:"def", bots_count:1}},
-        {type: FieldObject.MAJOR_TYPE, x:12, y:3, w:2, l:1, h:2, target:{priority: 1, bots_type:"def", bots_count:15}},
-        {type: FieldObject.CIVILEAN_TYPE, x:11, y:9, w:2, l:1, h:2, spawn:{bots_type:"def", bots_count:5}},
+
+        {type: FieldObject.OFFENCIVE_TYPE, x:9, y:3, w:2, l:1, h:2, attack_radius: 3,
+            target:{x:8, y:4, priority:9999, bots_type:Bot.OFFENCIVE_ZOMBIE, bots_count:1},
+            spawn:{bots_type:Bot.OFFENCIVE_ZOMBIE, bots_count:1}},
+
+        {type: FieldObject.MAJOR_TYPE, x:12, y:3, w:2, l:1, h:2, target:{priority: 1, bots_type:Bot.SIMPLE_ZOMBIE, bots_count:15}},
+
+        {type: FieldObject.CIVILEAN_TYPE, x:11, y:9, w:2, l:1, h:2, spawn:{bots_type:Bot.SIMPLE_ZOMBIE, bots_count:5}},
 //        {type: FieldObject.CIVILEAN_TYPE, x:6, y:12, w:1, l:2, h:2, spawn:{bots_type:"def", bots_count:5}},
 //        {type: FieldObject.CIVILEAN_TYPE, x:2, y:13, w:1, l:1, h:2, spawn:{bots_type:"def", bots_count:5}},
     ]
