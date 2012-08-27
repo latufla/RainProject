@@ -59,9 +59,9 @@ public class FieldObject extends ObjectBase{
         _spawn_point.apply_params_to_grid();
     }
 
-    public function create_target_point(pnt:Point = null, priority:int = 1, bots_type:String = Bot.SIMPLE_ZOMBIE, bots_count:uint = 5):void {
-        if(bots_count == 0)
-            return;
+    public function create_target_point(pnt:Point = null, params:Object = null):void {
+//        if(bots_count == 0)
+//            return;
 
         var grid:IsoGrid = Config.field_c.grid;
         var nearest_points:Vector.<Point> = get_nearest_points(grid);
@@ -70,8 +70,8 @@ public class FieldObject extends ObjectBase{
             throw new Error("can`t create target point");
 
         var p:Point = pnt ? pnt : nearest_points[0];
-        _target_point = new TargetPoint(p.x, p.y, bots_type, bots_count);
-        _target_point.priority = priority;
+        _target_point = new TargetPoint(p.x, p.y, params.bots_type, params.goal.type, params.goal.count);
+        _target_point.priority = params.priority;
         _target_point.apply_params_to_grid();
         _target_point.addEventListener(GameEvent.COMPLETE_TARGET, on_complete_target);
     }

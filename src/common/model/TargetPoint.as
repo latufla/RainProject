@@ -21,12 +21,13 @@ public class TargetPoint extends EventDispatcher{
     private var _bots_type:String;
     private var _goal:Goal = new Goal();
 
-    public function TargetPoint(x:uint, y:uint, bots_type:String = "simple_zombie", bots_count:uint = 5) {
+    public function TargetPoint(x:uint, y:uint, bots_type:String = "simple_zombie", goal_type:String = "simple_zombie", goal_count:uint = 5) {
         _x = x;
         _y = y;
         _bots_type  = bots_type;
-        _goal.type = bots_type;
-        _goal.count = bots_count;
+
+        _goal.type = goal_type;
+        _goal.count = goal_count;
     }
 
     public function apply_params_to_grid():void{

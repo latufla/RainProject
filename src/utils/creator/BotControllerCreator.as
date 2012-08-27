@@ -21,7 +21,7 @@ public class BotControllerCreator {
     public function BotControllerCreator () {
     }
 
-    public static function create(b:Bot):OffenciveBotController{
+    public static function create(b:Bot):BotController{
         return new BOTS[b.type]();
     }
 }
