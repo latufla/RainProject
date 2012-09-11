@@ -7,6 +7,10 @@
  */
 package common.model {
 import common.event.GameEvent;
+import common.model.grid.IsoGrid;
+import common.model.points.ProductPoint;
+import common.model.points.SpawnPoint;
+import common.model.points.TargetPoint;
 
 import flash.geom.Point;
 
@@ -22,8 +26,6 @@ public class FieldObject extends ObjectBase{
     private var _target_point:TargetPoint; // bots move to
 
     private var _attack_radius:int; // offencive bot spawns and walks
-
-    private var _produce_count:uint; // number of produce_class instances
 
     public function FieldObject(w:uint, l:uint, h:uint) {
         super();
@@ -81,6 +83,14 @@ public class FieldObject extends ObjectBase{
         _target_point.x = x;
         _target_point.y = y;
         _target_point.apply_params_to_grid();
+    }
+
+    public function create_product_point(product:FieldObject):void{
+        if(!product)
+            return;
+
+        _product_point = new ProductPoint(0, 0, product);
+        _product_point.apply_params_to_grid();
     }
 
     private function on_complete_target(e:GameEvent):void {

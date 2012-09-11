@@ -6,8 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 package common.view {
-import common.model.IsoGrid;
-import common.model.IsoTile;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
 
 import flash.display.Bitmap;
 

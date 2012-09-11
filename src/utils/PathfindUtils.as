@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package utils {
-import common.model.IsoTile;
+import common.model.grid.IsoTile;
 
 public class PathfindUtils {
     public static var heuristic:Function = PathfindUtils.mantattan_tie_breaks_heuristic;

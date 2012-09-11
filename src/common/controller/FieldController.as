@@ -11,10 +11,10 @@ import common.controller.constructions.BorderConstructionController;
 import common.controller.constructions.MajorConstructionController;
 import common.model.Bot;
 import common.model.FieldObject;
-import common.model.IsoGrid;
-import common.model.IsoTile;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
 import common.model.ObjectBase;
-import common.model.TargetPoint;
+import common.model.points.TargetPoint;
 import common.view.IsoGridView;
 import common.view.window.DialogWindow;
 

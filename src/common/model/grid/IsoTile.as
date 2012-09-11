@@ -5,7 +5,8 @@
  * Time: 11:22 AM
  * To change this template use File | Settings | File Templates.
  */
-package common.model {
+package common.model.grid {
+import common.model.*;
 import common.controller.bots.BotController;
 import common.controller.ControllerBase;
 

@@ -5,14 +5,14 @@
  * Time: 12:11 PM
  * To change this template use File | Settings | File Templates.
  */
-package common.model {
+package common.model.points {
+import common.model.*;
+import common.model.grid.IsoTile;
+
 import flash.utils.clearInterval;
 import flash.utils.setInterval;
 
-public class SpawnPoint {
-
-    private var _x:uint; // tile field pos
-    private var _y:uint;
+public class SpawnPoint extends ActivePointBase{
 
     private var _bots:Vector.<Bot> = new Vector.<Bot>();
     private var _next_bot_id:uint  = 0;
@@ -20,8 +20,7 @@ public class SpawnPoint {
     private var _interval_id:uint;
 
     public function SpawnPoint(x:uint, y:uint) {
-        _x = x;
-        _y = y;
+        super(x, y);
     }
 
     public function get next_bot():Bot{
@@ -68,7 +67,7 @@ public class SpawnPoint {
         clearInterval(_interval_id);
     }
 
-    public function apply_params_to_grid():void{
+    override public function apply_params_to_grid():void{
         var t:IsoTile = tile;
         if(t){
             t.is_spawn = true;
@@ -76,7 +75,7 @@ public class SpawnPoint {
         }
     }
 
-    public function remove_params_from_grid():void{
+    override public function remove_params_from_grid():void{
         var t:IsoTile = tile;
         if(t){
             t.is_spawn = false;
@@ -86,22 +85,6 @@ public class SpawnPoint {
 
     public function get completed():Boolean{
         return _next_bot_id >= _bots.length;
-    }
-
-    public function get x():uint {
-        return _x;
-    }
-
-    public function set x(value:uint):void {
-        _x = value;
-    }
-
-    public function get y():uint {
-        return _y;
-    }
-
-    public function set y(value:uint):void {
-        _y = value;
     }
 
     public function get bots():Vector.<Bot> {

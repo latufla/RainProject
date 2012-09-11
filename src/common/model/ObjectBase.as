@@ -7,6 +7,9 @@
  */
 package common.model {
 import common.controller.FieldController;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
+import common.model.points.ProductPoint;
 
 import flash.events.EventDispatcher;
 
@@ -29,7 +32,7 @@ public class ObjectBase extends EventDispatcher{
     protected var _is_reachable:Boolean; // true - u can walk here
     protected var _is_occupied:Boolean;  // false - u can build here
 
-    protected var _produce_class:Class; // produce smth.
+    protected var _product_point:ProductPoint; // another field object, connected to this
 
     protected var _type:String; // use for bots etc.
 
@@ -234,12 +237,12 @@ public class ObjectBase extends EventDispatcher{
         return y + length;
     }
 
-    public function get produce_class():Class {
-        return _produce_class;
+    public function get product_point():ProductPoint {
+        return _product_point;
     }
 
-    public function set produce_class(value:Class):void {
-        _produce_class = value;
+    public function set product_point(value:ProductPoint):void {
+        _product_point = value;
     }
 }
 }

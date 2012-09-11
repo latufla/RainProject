@@ -7,14 +7,16 @@
  */
 package common.model {
 import common.controller.FieldController;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
+import common.model.points.TargetPoint;
 
 import utils.PathfindUtils;
 
 public class Bot extends ObjectBase{
 
-    public static const SIMPLE_TYPE:int = 1;
-    public static const SIMPLE_ZOMBIE = "simple_zombie";
-    public static const OFFENCIVE_ZOMBIE = "offencive_zombie";
+    public static const SIMPLE_ZOMBIE = "simple_zombie"; // bots from buildings
+    public static const CARRIER = "carrier"; // bots, transforms to another
 
     protected var _path:Array = [];
     protected var _target:IsoTile;

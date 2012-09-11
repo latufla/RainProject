@@ -9,6 +9,7 @@ package utils.creator {
 import common.controller.FieldController;
 import common.model.Bot;
 import common.model.FieldObject;
+import common.model.FieldObject;
 
 import flash.geom.Point;
 
@@ -37,8 +38,10 @@ public class NMDemoFieldCreator {
 //        {type: FieldObject.BORDER_TYPE, x:7, y:9, w:1, l:1, h:1, target:{x:7, y:10, priority:3, bots_type:"def", bots_count:10}},
 
         {type: FieldObject.OFFENCIVE_TYPE, x:9, y:3, w:2, l:1, h:2, attack_radius: 3,
-            target:{x:8, y:4, priority:9999, bots_type:Bot.SIMPLE_ZOMBIE, goal:{type:Bot.OFFENCIVE_ZOMBIE, count:1}},
-            spawn:{bots_type:Bot.OFFENCIVE_ZOMBIE, bots_count:1}},
+            target:{x:8, y:4, priority:9999, bots_type:Bot.CARRIER, goal:{type:Bot.CARRIER, count:1}},
+            spawn:{bots_type:Bot.CARRIER, bots_count:1},
+            product:{type: FieldObject.BORDER_TYPE, x:8, y:4, w:1, l:1, h:1,
+                target:{x:7, y:4, priority: 3, bots_type:Bot.SIMPLE_ZOMBIE, goal:{type:Bot.SIMPLE_ZOMBIE, count:15}}}},
 
         {type: FieldObject.MAJOR_TYPE, x:12, y:3, w:2, l:1, h:2,
             target:{priority: 1, bots_type:Bot.SIMPLE_ZOMBIE, goal:{type:Bot.SIMPLE_ZOMBIE, count:15}}},
@@ -74,27 +77,38 @@ public class NMDemoFieldCreator {
 //
 //        FieldUtils.debug_generate_random_buildings(field_c);
 
-        var pnt:Point;
         for each (var p:Object in objects){
-            var b:FieldObject = new FieldObject(p.w, p.l, p.h);
-            b.type = p.type;
-            b.attack_radius = p.attack_radius;
-            b.move_to(p.x, p.y);
-
-            if(p.spawn){
-                b.create_spawn_point(p.spawn.bots_type, p.spawn.bots_count);
-            }
-
-            if(p.target){
-                pnt = p.target.x ? new Point(p.target.x, p.target.y) : null;
-                b.create_target_point(pnt, {priority: p.target.priority, bots_type:p.target.bots_type, goal:p.target.goal});
-            }
-
+            var b:FieldObject = create_field_object(p);
             field_c.add_building(b);
-            pnt = null;
         }
 
         return field_c;
+    }
+
+    protected static function create_field_object(p:Object):FieldObject{
+        var obj:FieldObject = new FieldObject(p.w, p.l, p.h);
+        obj.type = p.type;
+        obj.attack_radius = p.attack_radius;
+        obj.move_to(p.x, p.y);
+
+        if(p.spawn){
+            obj.create_spawn_point(p.spawn.bots_type, p.spawn.bots_count);
+        }
+
+        var pnt:Point;
+        if(p.target){
+            pnt = p.target.x ? new Point(p.target.x, p.target.y) : null;
+            obj.create_target_point(pnt, {priority: p.target.priority, bots_type:p.target.bots_type, goal:p.target.goal});
+        }
+
+        var product_obj:FieldObject;
+        if(p.product){
+            pnt = p.product.x ? new Point(p.product.x, p.product.y) : null;
+            product_obj = create_field_object(p.product);
+            obj.create_product_point(product_obj);
+        }
+
+        return obj;
     }
 
 

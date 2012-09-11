@@ -9,11 +9,11 @@ package common.controller {
 
 import common.event.GameEvent;
 import common.model.FieldObject;
-import common.model.IsoGrid;
-import common.model.IsoTile;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
 import common.model.ObjectBase;
-import common.model.SpawnPoint;
-import common.model.TargetPoint;
+import common.model.points.SpawnPoint;
+import common.model.points.TargetPoint;
 import common.view.FieldObjectView;
 import common.view.window.DialogWindow;
 import common.view.window.TargetWindow;

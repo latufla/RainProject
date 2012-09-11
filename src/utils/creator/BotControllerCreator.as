@@ -7,7 +7,7 @@
  */
 package utils.creator {
 import common.controller.bots.BotController;
-import common.controller.bots.OffenciveBotController;
+import common.controller.bots.CarrierBotController;
 import common.model.Bot;
 
 import flash.utils.Dictionary;
@@ -16,7 +16,7 @@ public class BotControllerCreator {
 
     private static const BOTS:Dictionary = new Dictionary()
     BOTS[Bot.SIMPLE_ZOMBIE] =  BotController;
-    BOTS[Bot.OFFENCIVE_ZOMBIE] =  OffenciveBotController;
+    BOTS[Bot.CARRIER] =  CarrierBotController;
 
     public function BotControllerCreator () {
     }

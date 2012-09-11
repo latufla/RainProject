@@ -7,7 +7,7 @@
  */
 package common.view {
 import common.controller.FieldController;
-import common.model.IsoTile;
+import common.model.grid.IsoTile;
 
 import flash.display.Graphics;
 

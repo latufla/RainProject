@@ -7,7 +7,7 @@
  */
 package common.controller.constructions {
 import common.controller.FieldObjectController;
-import common.model.TargetPoint;
+import common.model.points.TargetPoint;
 import common.view.window.TargetWindow;
 
 import flash.display.BitmapData;

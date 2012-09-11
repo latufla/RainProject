@@ -2,7 +2,7 @@ package {
 
 import common.controller.ControllerBase;
 import common.controller.ControllerBase;
-import common.model.IsoTile;
+import common.model.grid.IsoTile;
 import common.view.IsoTileRenderer;
 
 import flash.display.Bitmap;

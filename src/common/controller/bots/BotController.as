@@ -12,9 +12,8 @@ import com.greensock.TweenLite;
 import com.greensock.easing.Linear;
 
 import common.model.Bot;
-import common.model.FieldObject;
-import common.model.IsoGrid;
-import common.model.IsoTile;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
 import common.model.ObjectBase;
 import common.view.BotView;
 
@@ -132,8 +131,12 @@ public class BotController extends ControllerBase{
             tile.add_object(self);
 
             if(tile == path[path.length - 1])
-                Config.field_c.process_refresh_target_points();
+                on_complete_move_to_target();
         }
+    }
+
+    protected function on_complete_move_to_target(){
+        Config.field_c.process_refresh_target_points();
     }
 
     override public function apply_params_to_grid():void{

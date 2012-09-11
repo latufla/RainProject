@@ -10,7 +10,7 @@ import common.controller.FieldController;
 import common.controller.FieldObjectController;
 import common.model.Bot;
 import common.model.FieldObject;
-import common.model.SpawnPoint;
+import common.model.points.SpawnPoint;
 
 import flash.geom.Point;
 

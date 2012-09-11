@@ -2,8 +2,8 @@ package utils {
 import common.controller.ControllerBase;
 import common.controller.FieldController;
 import common.controller.FieldObjectController;
-import common.model.IsoGrid;
-import common.model.IsoTile;
+import common.model.grid.IsoGrid;
+import common.model.grid.IsoTile;
 import common.model.ObjectBase;
 
 import flash.utils.getTimer;
